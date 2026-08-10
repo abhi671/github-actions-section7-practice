@@ -73,6 +73,14 @@ jobs:
       artifact-name: dist-files
     # secrets:
     #   some-secrets: ${{ secrets.some-secret }}
+
+  print-deploy-result:
+    runs-on: ubuntu-latetst
+    needs: deploy
+    steps:
+      - name: Print deploy output
+        run: echo "${{ needs.deploy.outputs.result}}"
+
   report:
     needs: [lint, deploy]
     if: failure()
