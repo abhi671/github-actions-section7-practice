@@ -17,21 +17,21 @@ on:
 
 jobs:
     deploy:
-        outputs:
-          outcome: ${{ steps.set-result.outputs.step-result }}
-        runs-on: ubuntu-latest
-        steps:
-          - name: Get Code
-            uses: actions/download-artifact@v7
-            with:
-                name: ${{ inputs.artifact-name }}
-          - name: List files
-            run: ls
-          - name: Outuput information
-            run: echo "Deploying and uploading..."
-          - name: Set result output
-            id: step-result
-            run: echo "step-result=success" >> $GITHUB_OUTPUT
+      outputs:
+        outcome: ${{ steps.deploy-result.outputs.step-result }}
+      runs-on: ubuntu-latest
+      steps:
+        - name: Get Code
+          uses: actions/download-artifact@v7
+          with:
+              name: ${{ inputs.artifact-name }}
+        - name: List files
+          run: ls
+        - name: Outuput information
+          run: echo "Deploying and uploading..."
+        - name: Set result output
+          id: deploy-result
+          run: echo "step-result=success" >> $GITHUB_OUTPUT
 
 
 
